@@ -1,0 +1,19 @@
+.custom-pill {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.custom-pill .remove-icon {
+  font-size: 1rem;
+}
+
+.remove-icon {
+  font-size: 1.1rem !important;
+  color: #1F2937;
+  padding: 0;
+}
+
+.remove-icon:hover {
+  color: #ff0000;
+}

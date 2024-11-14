@@ -1,0 +1,144 @@
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+
+<div class="container d-flex justify-content-center max-w-4xl">
+  <div class="card mt-5 shadow bg-white rounded w-100" style="max-width: 450px">
+    <h2 class="text-center m-4 display-4">Sign Up</h2>
+    <form
+      class="mx-4"
+      #registrationForm="ngForm"
+      (ngSubmit)="register(registrationForm)"
+      novalidate
+    >
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700">Email</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          email
+          class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+          placeholder="Enter your email"
+          #emailField="ngModel"
+        />
+        <div
+          *ngIf="emailField.invalid && emailField.touched"
+          class="text-red-600 text-sm"
+        >
+          <span *ngIf="emailField.errors?.['required']"
+            >Email is required.</span
+          >
+          <span *ngIf="emailField.errors?.['email']"
+            >Invalid email format.</span
+          >
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="role" class="block text-gray-700">Role</label>
+        <select
+          id="role"
+          [(ngModel)]="role"
+          name="role"
+          required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          <option value="" disabled selected>Select your role</option>
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="username" class="block text-gray-700">Username</label>
+        <input
+          type="text"
+          id="username"
+          (input)="convertToLowercase()"
+          [(ngModel)]="username"
+          name="username"
+          required
+          minlength="5"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+          placeholder="Enter your username"
+          #usernameField="ngModel"
+        />
+        <div
+          *ngIf="usernameField.invalid && usernameField.touched"
+          class="text-red-600 text-sm"
+        >
+          <span *ngIf="usernameField.errors?.['required']"
+            >Username is required.</span
+          >
+          <span *ngIf="usernameField.errors?.['minlength']"
+            >Username must be at least 5 characters.</span
+          >
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-gray-700">Password</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          minlength="6"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+          placeholder="Enter your password"
+          #passwordField="ngModel"
+        />
+        <div
+          *ngIf="passwordField.invalid && passwordField.touched"
+          class="text-red-600 text-sm"
+        >
+          <span *ngIf="passwordField.errors?.['required']"
+            >Password is required.</span
+          >
+          <span *ngIf="passwordField.errors?.['minlength']"
+            >Password must be at least 6 characters.</span
+          >
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="confirmPassword" class="block text-gray-700"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          id="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          required
+          class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+          placeholder="Confirm password"
+          #confirmPasswordField="ngModel"
+        />
+        <div
+          *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched"
+          class="text-red-600 text-sm"
+        >
+          <span *ngIf="confirmPasswordField.errors?.['required']"
+            >Confirm Password is required.</span
+          >
+          <span
+            *ngIf="confirmPassword !== password && confirmPasswordField.touched"
+            >Passwords do not match.</span
+          >
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="registrationForm.invalid || confirmPassword !== password"
+        class="w-full bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-500 transition duration-200"
+      >
+        Register
+      </button>
+    </form>
+    <p class="m-4 text-center text-gray-600">
+      Already have an account?
+      <a routerLink="/login" class="text-blue-600 hover:underline">Login</a>
+    </p>
+  </div>
+</div>

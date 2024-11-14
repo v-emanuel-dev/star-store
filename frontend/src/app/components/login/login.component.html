@@ -1,0 +1,56 @@
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+
+<div class="container d-flex justify-content-center max-w-4xl">
+  <div
+    class="card card-responsive mt-5 shadow bg-white rounded w-100"
+    style="max-width: 450px"
+  >
+    <div class="card-body">
+      <h2 class="text-center m-4 display-4">Sign in</h2>
+      <form (ngSubmit)="login()" class="mx-4">
+        <div class="mb-3">
+          <label for="username" class="form-label">User</label>
+          <input
+            type="text"
+            id="username"
+            [(ngModel)]="email"
+            name="username"
+            required
+            class="form-control"
+            placeholder="Enter your username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            class="form-control"
+            placeholder="Enter your password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+        <button
+          class="bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow inline-flex items-center justify-center w-full mb-2 mt-2"
+          (click)="loginWithGoogle()"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/24px-Google_%22G%22_logo.svg.png"
+            alt="Google Logo"
+            class="google-logo w-4 h-4 mr-2"
+          />
+          <span>Login with Google</span>
+        </button>
+      </form>
+      <p class="mt-4 text-center text-muted">
+        Don't have an account?
+        <a routerLink="/register" class="text-primary">Sign up </a>
+      </p>
+    </div>
+  </div>
+</div>
